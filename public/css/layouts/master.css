@@ -1,0 +1,30 @@
+body,html {
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+    font-family: 'Baloo Bhaijaan', cursive;
+}
+
+textarea {
+    resize: none;
+}
+.nav-icon{
+    margin-left: 10px;
+}
+.cnav{
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+
+}
+.cnav p {
+    margin: auto;
+    font-size: 1.3em;
+}
+.nav-icon img{
+    width: inherit;
+}
+.foot{
+    position: fixed;
+    bottom: 0;
+    right: 100px;
+}
