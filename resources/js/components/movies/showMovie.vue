@@ -82,8 +82,12 @@
 </template>
 
 <script>
+import favoritebtn from '../favoritebtn.vue';
 export default {
-    props:['data_id'],
+    props:['data_id', 'hasChecked'],
+    components: {
+        favoritebtn
+    },
     data(){
         return{
             movie_id:this.data_id,
@@ -161,6 +165,7 @@ export default {
                 let data = response.data.results;
                 this.displaySimilar(data)
             })
+            // ======================================================== //
         },
         displayMovies(data){
             this.movie = data;
@@ -204,6 +209,17 @@ export default {
 </script>
 
 <style lang="css">
+    .movie-nav{
+        width: 100%;
+    }
+    .movie-interact{
+        display: block;
+        margin: 1em 0;
+        width: 100%;
+    }
+    .movie-interact button{
+        width: 25%;
+    }
     .btn {
         box-shadow: 0 0 3px black;
     }

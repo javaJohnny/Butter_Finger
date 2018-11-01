@@ -7,6 +7,9 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Review;
 use App\Profile;
+use App\Favorites;
+use App\Watched;
+use DB;
 
 class User extends Authenticatable
 {
@@ -38,4 +41,15 @@ class User extends Authenticatable
     {
         return $this->hasOne(Profile::class);
     }
+
+    public function favorites()
+    {
+        return $this->hasMany(Favorites::class);
+    }
+
+    public function watched()
+    {
+        return $this->hasMany(Watched::class);
+    }
+
 }

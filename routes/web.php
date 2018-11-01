@@ -14,8 +14,13 @@ Route::get('/movies/toprated', function(){
     return view('movies.toprated');
 });
 Route::get('/profile/{id}', 'ProfileController@show');
-//=============================================================================//
+Route::get('/profile/{id}/edit', 'ProfileController@edit');
+Route::post('/profile/{id}/update', 'ProfileController@update');
 
+//=============================================================================//
+Route::get('/youtube', function(){
+    return view('youtube.show');
+});
 // CRUD =======================================================================//
 Route::post('/post/{id}', 'ReviewController@store');
 //=============================================================================//
@@ -36,5 +41,9 @@ Route::get('/register', function(){
     return view('auth.register');
 });
 //=============================================================================//
+
+Route::post('/favorite/{id}', 'ShowMovieController@favorite');
+Route::post('/unfavorite/{id}', 'ShowMovieController@unfavorite');
+
 
 ?>

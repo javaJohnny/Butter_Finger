@@ -22,6 +22,8 @@ Vue.component('topratedMovie', require('./components/movies/topratedMovie.vue'))
 Vue.component('nowplayingMovie', require('./components/movies/nowplayingMovie.vue'));
 Vue.component('showMovie', require('./components/movies/showMovie.vue'));
 Vue.component('similarMovie', require('./components/movies/similarMovie.vue'));
+Vue.component('youtubeSearch', require('./components/movies/youtube.vue'));
+Vue.component('favoriteBtn', require('./components/favoritebtn.vue'));
 
 
 

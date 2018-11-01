@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\Profile;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\Controller;
 
@@ -19,6 +20,10 @@ class RegistrationController extends Controller
 
         $data['password'] = bcrypt($data['password']);
         $user = User::create($data);
+
+        Profile::create([
+            'user_id' => $user->id,
+        ]);
 
         if($user){
             auth()->login($user);

@@ -2,7 +2,8 @@
 
 
 @section('content')
-
+<form class="" action="/profile/{{$user->id}}/update" method="POST">
+    {{csrf_field()}}
 <div class="container emp-profile">
             <form method="post">
                 <div class="row">
@@ -28,13 +29,13 @@
                                     <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">About</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Timeline</a>
+                                    <a class="nav-link" id="profile-tab">Timeline</a>
                                 </li>
                             </ul>
                         </div>
                     </div>
                     <div class="col-md-2">
-                        <a href="/profile/{{$user->id}}/edit" class="profile-edit-btn" name="btnAddMore">Edit Profile</a>
+                        <button type="submit" class="btn profile-edit-btn" name="btnAddMore">DONE</button>
                     </div>
                 </div>
                 <div class="row">
@@ -60,7 +61,7 @@
                                                 <label>User Id</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p>Kshiti123</p>
+                                                <p>{{$user->id}}</p>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -68,7 +69,7 @@
                                                 <label>Name</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p>{{$user->name}}</p>
+                                                <input type="text" name="name" placeholder="Enter your full name here" value="{{$user->name}}">
                                             </div>
                                         </div>
                                         <div class="row">
@@ -76,7 +77,7 @@
                                                 <label>Email</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p>{{$user->email}}</p>
+                                                    <input type="email" name="email" placeholder="Enter email here" value="{{$user->email}}">
                                             </div>
                                         </div>
                                         <div class="row">
@@ -84,7 +85,15 @@
                                                 <label>Phone</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p>123 456 7890</p>
+                                                    <input type="text" name="phonenumber" placeholder="Enter phone number here" value="{{$user->phonenumber}}">
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Location</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                    <input type="text" name="location" placeholder="Enter your location here" value="{{$user->location}}">
                                             </div>
                                         </div>
                             </div>
@@ -141,5 +150,6 @@
                 </div>
             </form>
         </div>
+    </form>
 
 @endsection

@@ -2,8 +2,25 @@
 
 @section('content')
 <show-movie :data_id="{{$movieId}}"></show-movie>
+<!-- <div class="g">
+    <div></div>
+    <div class="h">
+        <div class="f">
+            <form action="/favorite/{{$movieId}}" method="POST">
+                {{csrf_field()}}
+                <button type="submit" class="btn btn-success">Favorite</button>
+            </form>
+        </div>
+    </div>
+</div> -->
+<div class="e">
+    <form action="/favorite/{{$movieId}}" method="POST">
+        {{csrf_field()}}
+        <button type="submit" class="btn btn-success">Favorite</button>
+    </form>
+</div>
+
 <div class="container">
-    <br>
     <h3 class="card-title">What do you think about the movie?</h3>
     <form class="form" action="/post/{{$movieId}}" method="POST">
         {{csrf_field()}}
@@ -30,7 +47,7 @@
         @foreach($reviews as $review)
         <div class="custom-card">
             <div class="card-user">
-                <h5>A review by <span style="text-transform: uppercase;">{{$review->name}}</span></h5>
+                <h5>A review by <br> <span style="text-transform: uppercase;">{{$review->name}}</span></h5>
                 <em>written at {{$review->created_at}}</em>
             </div>
             <div class="card-body">
