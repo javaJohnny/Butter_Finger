@@ -24,6 +24,7 @@ Vue.component('showMovie', require('./components/movies/showMovie.vue'));
 Vue.component('similarMovie', require('./components/movies/similarMovie.vue'));
 Vue.component('youtubeSearch', require('./components/movies/youtube.vue'));
 Vue.component('favoriteBtn', require('./components/favoritebtn.vue'));
+Vue.component('favoriteShow', require('./components/movies/favoriteShow.vue'));
 
 
 

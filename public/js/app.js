@@ -14349,7 +14349,7 @@ module.exports = Component.exports
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(16);
-module.exports = __webpack_require__(88);
+module.exports = __webpack_require__(93);
 
 
 /***/ }),
@@ -14382,6 +14382,7 @@ Vue.component('showMovie', __webpack_require__(69));
 Vue.component('similarMovie', __webpack_require__(78));
 Vue.component('youtubeSearch', __webpack_require__(83));
 Vue.component('favoriteBtn', __webpack_require__(14));
+Vue.component('favoriteShow', __webpack_require__(88));
 
 var app = new Vue({
   el: '#app'
@@ -48135,6 +48136,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         displayMovies: function displayMovies(data) {
             this.movies = data;
+        },
+        playButton: function playButton() {
+            var _this2 = this;
+
+            this.playVisible = true;
+            axios.get(playI).then(function (response) {
+                _this2.playVisible = true;
+                console.log(playApi);
+            });
         }
     }
 });
@@ -49968,6 +49978,177 @@ if (false) {
 
 /***/ }),
 /* 88 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(89)
+}
+var normalizeComponent = __webpack_require__(3)
+/* script */
+var __vue_script__ = __webpack_require__(91)
+/* template */
+var __vue_template__ = __webpack_require__(92)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = "data-v-aaa4d4ec"
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/movies/favoriteShow.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-aaa4d4ec", Component.options)
+  } else {
+    hotAPI.reload("data-v-aaa4d4ec", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 89 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(90);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(2)("6876c8b7", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-aaa4d4ec\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./favoriteShow.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-aaa4d4ec\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./favoriteShow.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 90 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(1)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.movie-card img[data-v-aaa4d4ec]{\r\n    border: 1px solid black;\r\n    border-radius: 10px;\n}\r\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 91 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: ['data_id'],
+    data: function data() {
+        return {
+            movie_id: this.data_id,
+            movies: []
+        };
+    },
+
+    created: function created() {
+        this.searchMovie();
+    },
+    methods: {
+        searchMovie: function searchMovie() {
+            var _this = this;
+
+            var instance = axios.create();
+            delete instance.defaults.headers.common['X-CSRF-TOKEN'];
+            delete instance.defaults.headers.common['X-Requested-With'];
+            axios.get('https://api.themoviedb.org/3/movie/' + this.movie_id + '?api_key=44ac828069325145084ba23e0ccc3c25&language=en-US', {}, {
+                responseType: 'json',
+                withCredentials: true
+            }).then(function (response) {
+                console.log('movie', response);
+                var data = response.data;
+                _this.displayMovie(data);
+            });
+        },
+        displayMovie: function displayMovie(data) {
+            this.movies = data;
+        }
+    }
+
+});
+
+/***/ }),
+/* 92 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "movie-card" }, [
+    _c(
+      "a",
+      { attrs: { href: "/movies/" + _vm.movies.id + "/" + _vm.movies.title } },
+      [
+        _c("img", {
+          attrs: {
+            src: "http://image.tmdb.org/t/p/w185" + _vm.movies.poster_path
+          }
+        })
+      ]
+    )
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-aaa4d4ec", module.exports)
+  }
+}
+
+/***/ }),
+/* 93 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin

@@ -2,21 +2,14 @@
 
 @section('content')
 <show-movie :data_id="{{$movieId}}"></show-movie>
-<!-- <div class="g">
-    <div></div>
-    <div class="h">
-        <div class="f">
-            <form action="/favorite/{{$movieId}}" method="POST">
-                {{csrf_field()}}
-                <button type="submit" class="btn btn-success">Favorite</button>
-            </form>
-        </div>
-    </div>
-</div> -->
 <div class="e">
-    <form action="/favorite/{{$movieId}}" method="POST">
+    <form class="p" action="/favorite/{{$movieId}}" method="POST">
         {{csrf_field()}}
         <button type="submit" class="btn btn-success">Favorite</button>
+    </form>
+    <form class="r" action="/watched/{{$movieId}}" method="POST">
+        {{csrf_field()}}
+        <button type="submit" class="btn btn-warning">Watched</button>
     </form>
 </div>
 
@@ -25,7 +18,6 @@
     <form class="form" action="/post/{{$movieId}}" method="POST">
         {{csrf_field()}}
         <input type="hidden" name="movie_id" value="{{$movieId}}">
-
         <div class="input-group input-group-lg">
             <div class="input-group-prepend ">
                 <span class="input-group-text" id="">Name</span>

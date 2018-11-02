@@ -12,7 +12,7 @@ textarea {
 }
 .cnav{
     display: grid;
-    grid-template-columns: 1fr 2fr;
+    grid-template-columns: auto auto;
 
 }
 .cnav p {
@@ -28,24 +28,29 @@ textarea {
     bottom: 0;
     right: 100px;
 }
-.h{
-}
-.f{
-    position:
-}
+
 .e{
     display: block;
     width: 100%;
+    text-align: center;
 }
 .e form{
-    transform: skewY(5deg) skewX(20deg);
-    margin-left: 90%;
+    display: inline-block;
 }
+.e .p{
+    display: inline;
+}
+.e .r{
+    margin-left: 0%;
+}
+
 
 .e button{
     border: 8px inset gold;
     box-shadow: 7px -15px 10px black;
 }
+
+
 .g{
     position: absolute;
     z-index: -2;
@@ -55,4 +60,8 @@ textarea {
     width: 100%;
     height: 100%;
     grid-template-columns: 1fr 2fr
+}
+.pageup{
+    position: fixed;
+    bottom:0;
 }

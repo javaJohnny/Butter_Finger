@@ -42,6 +42,15 @@ export default {
         {
             this.movies = data;
         },
+
+        playButton(){
+            this.playVisible = true;
+            axios.get(playI)
+            .then((response)=>{
+                this.playVisible = true;
+                console.log(playApi);
+            })
+        }
     }
 }
 </script>

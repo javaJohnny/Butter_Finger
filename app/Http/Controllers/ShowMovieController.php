@@ -7,6 +7,7 @@ use App\User;
 use App\Review;
 use App\Favorites;
 use App\Profile;
+use App\Watched;
 use DB;
 
 class ShowMovieController extends Controller
@@ -21,7 +22,6 @@ class ShowMovieController extends Controller
         ])->first();
 
         $num = count($favorites);
-
         $movieId = $id;
         $movieTitle = $title;
         $user_id = User::all();
@@ -65,6 +65,36 @@ class ShowMovieController extends Controller
     {
         $user_id = auth()->id();
         $favorites = DB::table('favorites')->where('user_id', $user_id)
+                                   ->where('movie_id', $id)->delete();
+
+
+        return redirect()->back();
+    }
+    public function watched($id)
+    {
+        $user = auth()->id();
+        $movie_id = $id;
+        $duplicate = DB::table('watcheds')->where([
+            ['user_id', '=', $user],
+            ['movie_id', '=', $id],
+        ])->count();
+        if(! $duplicate){
+            $watched = new Watched;
+            $watched->movie_id = $movie_id;
+            $watched->user_id = $user;
+            $watched->yup = 1;
+            $watched->save();
+        }
+
+
+        return redirect()->back();
+
+    }
+
+    public function unwatched($id)
+    {
+        $user_id = auth()->id();
+        $watched = DB::table('watcheds')->where('user_id', $user_id)
                                    ->where('movie_id', $id)->delete();
 
 

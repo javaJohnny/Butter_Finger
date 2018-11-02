@@ -25,7 +25,7 @@
                 </div>
 
                 <button type="submit" class="btn btn-primary">Submit</button>
-
+                <em>Already a member? <a href="/" class="badge badge-info">Click Here.</a></em>
             </form>
         </div>
     </body>

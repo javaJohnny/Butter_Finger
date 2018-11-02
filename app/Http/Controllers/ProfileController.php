@@ -8,6 +8,11 @@ use App\Profile;
 
 class ProfileController extends Controller
 {
+
+    public function __construct(){
+        $this->middleware('auth');
+    }
+
     public function show($id)
     {
         $user = User::find($id);
@@ -31,6 +36,13 @@ class ProfileController extends Controller
         $profile->save();
 
         return redirect('/profile/'. $userid);
+    }
+
+    public function showStat($id)
+    {
+        $user = User::find($id);
+
+        return view('profile.stat', compact('user'));
     }
 
 
