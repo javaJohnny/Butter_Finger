@@ -40,6 +40,8 @@ Route::group(['middleware' => ['web']], function(){
     Route::get('/movies/{id}/{title}', 'ShowMovieController@show');
     Route::get('/movies/{id}/{title}/similar', 'ShowMovieController@similar');
     Route::post('/register/update', "RegistrationController@store");
+    Route::get('/search/{movie}', "ShowMovieController@search");
+
 
     //=============================================================================//
     Route::post('/favorite/{id}', 'ShowMovieController@favorite');

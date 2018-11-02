@@ -14374,6 +14374,9 @@ window.Vue = __webpack_require__(40);
  */
 
 Vue.component('searchComponent', __webpack_require__(43));
+Vue.component('search', __webpack_require__(97));
+Vue.component('searchView', __webpack_require__(102));
+
 Vue.component('popularMovie', __webpack_require__(49));
 Vue.component('upcomingMovie', __webpack_require__(54));
 Vue.component('topratedMovie', __webpack_require__(59));
@@ -50152,6 +50155,548 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 94 */,
+/* 95 */,
+/* 96 */,
+/* 97 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(98)
+}
+var normalizeComponent = __webpack_require__(3)
+/* script */
+var __vue_script__ = __webpack_require__(100)
+/* template */
+var __vue_template__ = __webpack_require__(101)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = "data-v-1493808e"
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/movies/search.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-1493808e", Component.options)
+  } else {
+    hotAPI.reload("data-v-1493808e", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 98 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(99);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(2)("30f698d8", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-1493808e\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./search.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-1493808e\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./search.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 99 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(1)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.search-block[data-v-1493808e]{\n    margin-top: 25%;\n}\n#searchvue[data-v-1493808e]{\n    text-align: center;\n}\n.show[data-v-1493808e] {\n    margin-top:2% !important;\n    -webkit-transition: 0.5s ease;\n    transition: 0.5s ease;\n}\n#movies[data-v-1493808e]{\n    margin-top: 3%;\n    text-align: center;\n}\n#movies img[data-v-1493808e], #movies img[data-v-1493808e] {\n    -webkit-box-shadow: 0 0 5px black;\n            box-shadow: 0 0 5px black;\n    border-radius: 5px;\n    border: 1em solid #eee;\n    width:100%;\n}\n#margin[data-v-1493808e] {\n    margin-bottom:10px !important;\n}\n@media(min-width:960px){\n#movies .col-md-3 .well[data-v-1493808e]{\n        height:390px\n}\n#movies .col-md-3 img[data-v-1493808e] {\n        height:475px;\n}\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 100 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            year: null,
+            search: null,
+            pushUp: false,
+            dropResult: false,
+            movies: []
+        };
+    },
+
+    methods: {
+        doSearch: function doSearch(event) {
+            var _this = this;
+
+            event.preventDefault();
+            if (!this.search) {
+                return false;
+            }
+            this.dropResult = false;
+            this.pushUp = false;
+            var instance = axios.create();
+            delete instance.defaults.headers.common['X-CSRF-TOKEN'];
+            delete instance.defaults.headers.common['X-Requested-With'];
+            axios.get('https://api.themoviedb.org/3/search/movie?api_key=44ac828069325145084ba23e0ccc3c25&language=en-US&query=' + this.search + '&page=1&include_adult=false', {}, {
+                responseType: 'json',
+                withCredentials: true
+            }).then(function (response) {
+                console.log('search', response);
+                var data = response.data.results;
+                _this.loadMovies(data);
+            });
+        },
+        loadMovies: function loadMovies(data) {
+            this.movies = data;
+            this.pushUp = true;
+            this.dropResult = true;
+        },
+        movieSelected: function movieSelected(id, title) {
+            sessionStorage.setItem('id', id);
+            sessionStorage.setItem('title', title);
+
+            return false;
+        }
+    }
+});
+
+/***/ }),
+/* 101 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "container" }, [
+    _c("div", [
+      _c("div", { attrs: { id: "searchvue" } }, [
+        _c("form", { attrs: { id: "searchForm" } }, [
+          _c("div", { staticClass: "input-group" }, [
+            _vm._m(0),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.search,
+                  expression: "search"
+                }
+              ],
+              staticClass: "form-control",
+              attrs: {
+                type: "text",
+                id: "searchText",
+                placeholder: "Search a Movie"
+              },
+              domProps: { value: _vm.search },
+              on: {
+                keypress: function($event) {
+                  if (
+                    !("button" in $event) &&
+                    _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
+                  ) {
+                    return null
+                  }
+                  $event.preventDefault()
+                  return _vm.doSearch($event)
+                },
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.search = $event.target.value
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c("div", { staticClass: "input-group-append" }, [
+              _c(
+                "a",
+                {
+                  staticClass: "btn btn-outline-secondary",
+                  attrs: { href: "/search/" + _vm.search, id: "button-addon2" }
+                },
+                [_vm._v("Search")]
+              )
+            ])
+          ])
+        ])
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c("span", { staticClass: "input-group-text" }, [_vm._v("Movie Name")])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-1493808e", module.exports)
+  }
+}
+
+/***/ }),
+/* 102 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(103)
+}
+var normalizeComponent = __webpack_require__(3)
+/* script */
+var __vue_script__ = __webpack_require__(105)
+/* template */
+var __vue_template__ = __webpack_require__(106)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = "data-v-1df28b7e"
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/movies/searchView.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-1df28b7e", Component.options)
+  } else {
+    hotAPI.reload("data-v-1df28b7e", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 103 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(104);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(2)("78ec68ee", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-1df28b7e\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./searchView.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-1df28b7e\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./searchView.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 104 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(1)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.search-block[data-v-1df28b7e]{\n    margin-top: 25%;\n}\n#searchvue[data-v-1df28b7e]{\n    text-align: center;\n}\n.show[data-v-1df28b7e] {\n    margin-top:2% !important;\n    -webkit-transition: 0.5s ease;\n    transition: 0.5s ease;\n}\n#movies[data-v-1df28b7e]{\n    margin-top: 3%;\n    text-align: center;\n}\n#movies img[data-v-1df28b7e], #movies img[data-v-1df28b7e] {\n    -webkit-box-shadow: 0 0 5px black;\n            box-shadow: 0 0 5px black;\n    border-radius: 5px;\n    border: 1em solid #eee;\n    width:100%;\n}\n#margin[data-v-1df28b7e] {\n    margin-bottom:10px !important;\n}\n@media(min-width:960px){\n#movies .col-md-3 .well[data-v-1df28b7e]{\n        height:390px\n}\n#movies .col-md-3 img[data-v-1df28b7e] {\n        height:475px;\n}\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 105 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: ['title'],
+    data: function data() {
+        return {
+            year: null,
+            search: this.title,
+            movies: []
+        };
+    },
+
+    created: function created() {
+        this.doSearch();
+    },
+    methods: {
+        doSearch: function doSearch(event) {
+            var _this = this;
+
+            var instance = axios.create();
+            delete instance.defaults.headers.common['X-CSRF-TOKEN'];
+            delete instance.defaults.headers.common['X-Requested-With'];
+            axios.get('https://api.themoviedb.org/3/search/movie?api_key=44ac828069325145084ba23e0ccc3c25&language=en-US&query=' + this.search + '&page=1&include_adult=false', {}, {
+                responseType: 'json',
+                withCredentials: true
+            }).then(function (response) {
+                console.log('search', response);
+                var data = response.data.results;
+                _this.loadMovies(data);
+            });
+        },
+        loadMovies: function loadMovies(data) {
+            this.movies = data;
+        },
+        movieSelected: function movieSelected(id, title) {
+            sessionStorage.setItem('id', id);
+            sessionStorage.setItem('title', title);
+            return false;
+        }
+    }
+});
+
+/***/ }),
+/* 106 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "container" }, [
+    _c("div", [
+      _c("div", { attrs: { id: "searchvue" } }, [
+        _c("form", { attrs: { id: "searchForm" } }, [
+          _c("div", { staticClass: "input-group" }, [
+            _vm._m(0),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.search,
+                  expression: "search"
+                }
+              ],
+              staticClass: "form-control",
+              attrs: {
+                type: "text",
+                id: "searchText",
+                placeholder: "Search a Movie"
+              },
+              domProps: { value: _vm.search },
+              on: {
+                keypress: function($event) {
+                  if (
+                    !("button" in $event) &&
+                    _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
+                  ) {
+                    return null
+                  }
+                  $event.preventDefault()
+                  return _vm.doSearch($event)
+                },
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.search = $event.target.value
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c("div", { staticClass: "input-group-append" }, [
+              _c(
+                "a",
+                {
+                  staticClass: "btn btn-outline-secondary",
+                  attrs: { href: "/search/" + _vm.search, id: "button-addon2" }
+                },
+                [_vm._v("Search")]
+              )
+            ])
+          ])
+        ])
+      ])
+    ]),
+    _vm._v(" "),
+    _c(
+      "div",
+      { staticClass: "row", attrs: { id: "movies" } },
+      _vm._l(_vm.movies, function(movie) {
+        return _c("div", { staticClass: "col-md-3", attrs: { id: "margin" } }, [
+          _c("img", {
+            attrs: {
+              src: "http://image.tmdb.org/t/p/w342//" + movie.poster_path,
+              alt: ""
+            }
+          }),
+          _vm._v(" "),
+          _c("h5", [_vm._v(_vm._s(movie.title))]),
+          _vm._v(" "),
+          _c("p", [_vm._v("(" + _vm._s(movie.release_date) + ")")]),
+          _vm._v(" "),
+          _c(
+            "a",
+            {
+              staticClass: "btn btn-primary",
+              attrs: { href: "/movies/" + movie.id + "/" + movie.title }
+            },
+            [_vm._v("Movie Details")]
+          )
+        ])
+      })
+    )
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c("span", { staticClass: "input-group-text" }, [_vm._v("Movie Name")])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-1df28b7e", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);

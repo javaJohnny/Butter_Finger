@@ -1,6 +1,6 @@
 <template lang="html">
     <div class="container">
-        <div class="search-block" :class="{'show' : pushUp}">
+        <div>
             <div id="searchvue">
                 <form id="searchForm">
                     <div class="input-group">
@@ -13,13 +13,13 @@
                             id="searchText"
                             placeholder="Search a Movie" class="form-control">
                             <div class="input-group-append">
-                                <button class="btn btn-outline-secondary" type="button" @click="doSearch" id="button-addon2">Search</button>
+                                <a class="btn btn-outline-secondary" :href="'/search/'+search" id="button-addon2">Search</a>
                             </div>
                     </div>
                 </form>
             </div>
         </div>
-        <div id="movies" class="row" v-show="dropResult">
+        <div id="movies" class="row">
             <div class="col-md-3" id="margin" v-for="movie in movies">
                 <img :src='"http://image.tmdb.org/t/p/w342//"+movie.poster_path' alt="">
                 <h5>{{movie.title}}</h5>
@@ -32,24 +32,21 @@
 
 <script>
 export default {
+    props:['title'],
     data(){
         return{
             year:null,
-            search: null,
-            pushUp: false,
-            dropResult:false,
+            search: this.title,
             movies: [],
         }
+    },
+    created:function(){
+            this.doSearch();
     },
     methods: {
         doSearch(event)
         {
-            event.preventDefault();
-            if(!this.search){
-                return false
-            }
-            this.dropResult = false;
-            this.pushUp = false;
+
             let instance = axios.create();
             delete instance.defaults.headers.common['X-CSRF-TOKEN'];
             delete instance.defaults.headers.common['X-Requested-With'];
@@ -67,13 +64,10 @@ export default {
         loadMovies(data)
         {
             this.movies = data;
-            this.pushUp = true;
-            this.dropResult = true;
         },
         movieSelected(id, title){
             sessionStorage.setItem('id', id);
             sessionStorage.setItem('title', title);
-
             return false;
         },
     }

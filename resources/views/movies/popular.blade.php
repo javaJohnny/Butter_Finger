@@ -5,6 +5,8 @@
     <a href="#top"><img src="/img/chevron-up.png" alt="PageUp"></a>
 </div>
 <div class="container">
+    <search></search>
+    
     <popular-movie></popular-movie>
 </div>
 

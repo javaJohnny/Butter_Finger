@@ -100,4 +100,12 @@ class ShowMovieController extends Controller
 
         return redirect()->back();
     }
+
+    public function search($title)
+    {
+        $movie = $title;
+
+        return view('movies.search', compact('movie'));
+
+    }
 }

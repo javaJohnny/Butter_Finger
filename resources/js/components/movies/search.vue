@@ -1,6 +1,6 @@
 <template lang="html">
     <div class="container">
-        <div class="search-block" :class="{'show' : pushUp}">
+        <div>
             <div id="searchvue">
                 <form id="searchForm">
                     <div class="input-group">
@@ -13,18 +13,10 @@
                             id="searchText"
                             placeholder="Search a Movie" class="form-control">
                             <div class="input-group-append">
-                                <button class="btn btn-outline-secondary" type="button" @click="doSearch" id="button-addon2">Search</button>
+                                <a class="btn btn-outline-secondary" :href="'/search/'+search" id="button-addon2">Search</a>
                             </div>
                     </div>
                 </form>
-            </div>
-        </div>
-        <div id="movies" class="row" v-show="dropResult">
-            <div class="col-md-3" id="margin" v-for="movie in movies">
-                <img :src='"http://image.tmdb.org/t/p/w342//"+movie.poster_path' alt="">
-                <h5>{{movie.title}}</h5>
-                <p>({{movie.release_date}})</p>
-                <a :href="'/movies/'+movie.id+'/'+movie.title" class="btn btn-primary">Movie Details</a>
             </div>
         </div>
     </div>

@@ -5,8 +5,7 @@
     <a href="#top"><img src="/img/chevron-up.png" alt="PageUp"></a>
 </div>
 <div class="container">
-    <search></search>
-    
-    <upcoming-movie></upcoming-movie>
+    <search-View title="{{$movie}}"></search-View>
+
 </div>
 @endsection

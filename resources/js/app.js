@@ -16,6 +16,9 @@ window.Vue = require('vue');
  */
 
 Vue.component('searchComponent', require('./components/movies/SearchComponent.vue'));
+Vue.component('search', require('./components/movies/search.vue'));
+Vue.component('searchView', require('./components/movies/searchView.vue'));
+
 Vue.component('popularMovie', require('./components/movies/popularMovie.vue'));
 Vue.component('upcomingMovie', require('./components/movies/upcomingMovie.vue'));
 Vue.component('topratedMovie', require('./components/movies/topratedMovie.vue'));
