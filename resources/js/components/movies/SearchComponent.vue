@@ -1,6 +1,9 @@
 <template lang="html">
     <div class="container">
         <div class="search-block" :class="{'show' : pushUp}">
+            <div class="home-title">
+                <h4>Go ahead and search something!</h4>
+            </div>
             <div id="searchvue">
                 <form id="searchForm">
                     <div class="input-group">

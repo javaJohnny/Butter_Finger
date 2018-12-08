@@ -47825,6 +47825,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -47883,10 +47886,12 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container" }, [
     _c("div", { staticClass: "search-block", class: { show: _vm.pushUp } }, [
+      _vm._m(0),
+      _vm._v(" "),
       _c("div", { attrs: { id: "searchvue" } }, [
         _c("form", { attrs: { id: "searchForm" } }, [
           _c("div", { staticClass: "input-group" }, [
-            _vm._m(0),
+            _vm._m(1),
             _vm._v(" "),
             _c("input", {
               directives: [
@@ -47981,6 +47986,14 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "home-title" }, [
+      _c("h4", [_vm._v("Go ahead and search something!")])
+    ])
+  },
   function() {
     var _vm = this
     var _h = _vm.$createElement

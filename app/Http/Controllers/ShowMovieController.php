@@ -19,7 +19,7 @@ class ShowMovieController extends Controller
         $favorites = DB::table('favorites')->where([
             ['user_id', '=', $userid],
             ['movie_id', '=', $id]
-        ])->first();
+        ])->get();
 
         $num = count($favorites);
         $movieId = $id;

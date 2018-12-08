@@ -34,7 +34,7 @@
     </form>
     <div class="feedback">
         @if(count($reviews) <= 0)
-        <p>Be the first to review!</p>
+        <p  style="text-align:center;">Be the first to review!</p>
         @else
         @foreach($reviews as $review)
         <div class="custom-card">

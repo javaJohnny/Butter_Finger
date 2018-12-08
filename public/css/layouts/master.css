@@ -4,6 +4,10 @@ body,html {
     box-sizing: border-box;
     font-family: 'Baloo Bhaijaan', cursive;
 }
+.home-title{
+    text-align: center;
+    margin-top: 20px;
+}
 textarea {
     resize: none;
 }
